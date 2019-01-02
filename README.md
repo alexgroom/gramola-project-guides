@@ -26,26 +26,36 @@ Name thw environment with a city, user SFDC code 000000 if no specific customer.
 
 The environment will take about 30 minutes to be created and look like this example:
 
-Bastion: bastion.NAME-XXXX.openshiftworkshop.com
-Console: https://master.NAME-XXX.openshiftworkshop.com
+  ```
+  Bastion: bastion.NAME-XXXX.openshiftworkshop.com
+  Console: https://master.NAME-XXX.openshiftworkshop.com
+  ```
+
 
 Follow the email instructions to access the workshop admin via SSH. Download the workshop PEM as required
 
-$ ssh -i ~/.ssh/ocp-workshop.pem ec2-user@bastion.NAME-XXXX.openshiftworkshop.com
+  ```
+  $ ssh -i ~/.ssh/ocp-workshop.pem ec2-user@bastion.NAME-XXXX.openshiftworkshop.com
+  ```
 
 For console access, connect to the bastion host and add Cluster admin to a given user eg user3, then use this acount to access the web console.
 
-# sudo -i
-# oadm policy add-cluster-role-to-user cluster-admin user3
-# oc new-project lab-infra
+  ```
+  $ sudo -i
+  $ oadm policy add-cluster-role-to-user cluster-admin user3
+  $ oc new-project lab-infra
+  ```
 
 Now login into the openshift console and (user3/openshift) and create the lab-infra project contents and all the associated applications and guides from the service catalog entering all the configuration information. Choose the "Cloud-Native Workshop Installer" from the Catalog.
 
 The typical responses are:
 
-master url: https://master.NAME-XXX.openshiftworkshop.com
-user password: openshift
-Gogs etc: adminuser/adminpwd
+  ```
+  master url: https://master.NAME-XXX.openshiftworkshop.com
+  user password: openshift
+  Gogs services etc: adminuser/adminpwd
+  ```
+
 
 Manually deploy the lab instructions as described below, either in the Openshift cluster or locally via docker.
 
