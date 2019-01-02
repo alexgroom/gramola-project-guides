@@ -42,14 +42,13 @@ on how to configure the service catalog.
 
 Note that if you are using the _OpenShift Workshop_ in RHPDS, this APB is already available in your service catalog.
 
-![](images/service-catalog.png?raw=true)
 
-As an alternative, you can also run the APB directly in a pod on OpenShift to install the workshop infra:
+Run the APB directly in a pod on OpenShift to install the workshop infra:
 
 ```
 oc login
 oc new-project lab-infra
-oc run apb --restart=Never --image="cvicens/mobile-cloudnative-workshop-apb:latest" \
+oc run apb --restart=Never --image="alexgroom/mobile-cloudnative-workshop-apb:latest" \
     -- provision -vvv -e namespace=$(oc project -q) -e openshift_token=$(oc whoami -t)
 ```
 
@@ -76,7 +75,8 @@ Note that if you have used the above workshop installer, the lab instructions ar
 
 ```
 $ oc new-app osevg/workshopper:latest --name=guides \
-    -e WORKSHOPS_URLS="https://raw.githubusercontent.com/openshift-labs/cloud-native-guides/ocp-3.10/_cloud-native-workshop.yml"
+    -e WORKSHOPS_URLS="https://raw.githubusercontent.com/alexgroom/gramola-project-guides/master/_cloud-native-mobile-workshop-che.yml" \
+    -n lab-infra
 $ oc expose svc/guides
 ```
 
@@ -84,8 +84,8 @@ Local Lab Instructions
 ===
 ```
 $ docker run -it -p 8080:8080 \
-      -v $(pwd):/app-data \
-      -e CONTENT_URL_PREFIX="file:///app-data" \
-      -e WORKSHOPS_URLS="file:///app-data/_cloud-native-workshop.yml" \
-      osevg/workshopper:latest
+    -v $(pwd):/app-data\
+    -e CONTENT_URL_PREFIX="file:///app-data" \
+    -e WORKSHOPS_URLS="file:///app-data/_cloud-native-mobile-workshop-che.yml" \
+    osevg/workshopper:latest
 ```
