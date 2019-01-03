@@ -59,6 +59,13 @@ The typical responses are:
 
 Manually deploy the lab instructions as described below, either in the Openshift cluster or locally via docker.
 
+Or simply edit the existing "guides-che" application and change the following environment variables to point to the project content. the advantage here is that the existing URLs are already populated and pointing at the services just installed.
+
+  ```
+  CONTENT_URL_PREFIX = https://raw.githubusercontent.com/alexgroom/gramola-project-guides/master
+  WORKSHOPS_URLS = https://raw.githubusercontent.com/alexgroom/gramola-project-guides/master/_cloud-native-mobile-workshop-che.yml
+  ```
+
 Install Workshop Infrastructure
 ===
 
@@ -94,11 +101,19 @@ oc run apb --restart=Never --image="cvincens/mobile-cloudnative-workshop-apb:lat
     -- provision -vvv -e namespace=$(oc project -q) -e openshift_token=$(oc whoami -t)
 ```
 
-Or if you have Ansible installed locally, you can also run the Ansilbe playbooks directly on your machine:
+Install Workshop Directly
+===
+If you have Ansible installed locally ie. on your Mac or Linux laptop, you can also run the Ansilbe playbooks directly on your machine:
 
 > NOTE:
+Python3 is a dependancy along with jmespath and the openshift API. The default on most systems including RHEL and Mac OS is Python => Python2. Changing this default is undesirable since it is alsmost a system dependancy so install Python3 in a new location and then update its runtime.
+
+```
  sudo pip3 install openshift
  sudo ansible-galaxy install -r requirements-travis.yml
+ sudo pip3 install jmespath
+ sudo pip install jmespath
+```
 
 ```
 oc login
@@ -107,21 +122,12 @@ oc new-project lab-infra
 ansible-playbook -vvv playbooks/provision.yml \
        -e namespace=$(oc project -q) \
        -e openshift_token=$(oc whoami -t) \
-       -e openshift_master_url=$(oc whoami --show-server)
+       -e openshift_master_url=$(oc whoami --show-server) \
+       -e 'ansible_python_interpreter=/usr/local/bin/python3' 
 ``` 
 
-Lab Instructions on OpenShift
-===
+On a system where both Python2 and Python3 are present, Ansible will need to be forced to use Python3 by specifiying its location since it is a dependancy of the openshift API.
 
-Note that if you have used the above workshop installer, the lab instructions are already deployed.
-
-```
-$ oc new-app osevg/workshopper:latest --name=guides \
-    -e WORKSHOPS_URLS="https://raw.githubusercontent.com/alexgroom/gramola-project-guides/master/_cloud-native-mobile-workshop-che.yml" \
-    -e CONTENT_URL_PREFIX="https://raw.githubusercontent.com/alexgroom/gramola-project-guides/master" \
-    -n lab-infra
-$ oc expose svc/guides
-```
 
 Local Lab Instructions
 ===
