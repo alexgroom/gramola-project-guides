@@ -19,7 +19,9 @@ Dart is a OO language, similar to others, Java, C++, C#, TypeScript, ... it supp
 More on Dart and why Flutter uses it [here](https://hackernoon.com/why-flutter-uses-dart-dd635a054ebf).
 
 #### Creating a blank app and testing it
-Before we dive into our app's code let's create a blank application and test if everything works properly.
+Before we dive into our app's code let's create a blank application and test if everything works properly. 
+
+Note that the terminal window for running flutter is local to where the Android and/or an iOS development environment (ie. a Mac) has been installed. 
 
 ~~~shell
 $ flutter create blank_app
