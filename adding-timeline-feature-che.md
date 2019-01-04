@@ -32,7 +32,7 @@ Time to generate our Node.js REST enabled sample application to be the base of o
 
 You should notice a file being downloaded. This zip file contains the base code we need.
 
-> **IMPORTANT:** Unfortunately the naming is not correct and the zip file is named as 'booster.zip' instead of 'files.zip'. Please rename this file as **'booster-timeline.zip'**.
+> **IMPORTANT:** Unfortunately the naming is not correct and the zip file is named as 'booster.zip' instead of 'timeline.zip'. Please rename this file as **'booster-timeline.zip'**.
 
 ![Next Steps]({% image_path launch-site-next-steps-timeline.png %}){:width="700px"}
 
@@ -170,7 +170,7 @@ In summary we have to:
 
 Before starting creating YAML files for our assets, let's create a folder for our resources under our 'files' folder, we're going to name it **'base-resources'**. 
 
-> If you close all your Che terminal windows, or want to start in a new one, you can use the '+' sign and select terminal. If you do, then change directory: `cd $CHE_PROJECTS_ROOT/{{PROJECT_FOLDER_NAME}}/files`.
+> If you close all your Che terminal windows, or want to start in a new one, you can use the '+' sign and select terminal. If you do, then change directory: `cd $CHE_PROJECTS_ROOT/{{PROJECT_FOLDER_NAME}}/timeline`.
 
 ~~~shell
 $ mkdir base-resources
@@ -538,13 +538,13 @@ Before we proceed with testing the code locally let's modify entry 'files' in **
 ~~~
 
 ##### Let's test our code locally
-Before we test our code, let's set up some environment variables.
+Before we test our code, let's set up some environment variables, making sure you set the database service name according to your existing timeline database already deployed.
 
 ~~~shell
 export DB_USERNAME=luke
 export DB_PASSWORD=secret
 export DB_NAME=timeline
-export DB_SERVICE_NAME=timeline-database.user1-gramola-cicd.svc
+export DB_SERVICE_NAME=timeline-database.userX-gramola-cicd.svc
 export DB_SERVICE_PORT=27017
 ~~~
 
