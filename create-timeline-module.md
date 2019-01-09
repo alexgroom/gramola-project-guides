@@ -64,7 +64,11 @@ dev_dependencies:
 
 Now let's modify function _incrementCounter() in file './lib/main.dart'.
 
-> Add this import statement at the top:  **import 'package:hello/hello.dart';**
+> Add this import statement at the top:  
+
+~~~java
+import 'package:hello/hello.dart';
+~~~
 
 ~~~java
 void _incrementCounter() {
